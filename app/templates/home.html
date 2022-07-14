@@ -1,5 +1,45 @@
 {% extends './includes/layout.html' %}
 
 {% block content %}
-<h1>Home</h1>
+<div class="container">
+    <h1>Home</h1>
+
+    <form action="http://127.0.0.1:5000/api/create_car" method="POST" class="form-inline">
+        <div class="form-group mb-2 w-75 pr-3">
+          <label for="make" class="sr-only">Submit car make</label>
+          <input type="text"  class="form-control w-100"  name = "make" id="carsinput" placeholder="Submit car make">
+        </div>
+        <div class="form-group mb-2 w-75 pr-3">
+            <label for="model" class="sr-only">Submit car model</label>
+            <input type="text"  class="form-control w-100"  name = "model" id="carsinput" placeholder="Submit car model">
+        </div>
+        <div class="form-group mb-2 w-75 pr-3">
+            <label for="year" class="sr-only">Submit car year</label>
+            <input type="text"  class="form-control w-100"  name = "year" id="carsinput" placeholder="Submit car year">
+        </div>
+        <div class="form-group mb-2 w-75 pr-3">
+            <label for="color" class="sr-only">Submit car color</label>
+            <input type="text"  class="form-control w-100"  name = "color" id="carsinput" placeholder="Submit car color">
+        </div>
+        <div class="form-group mb-2 w-75 pr-3">
+            <label for="price" class="sr-only">Submit car price</label>
+            <input type="text"  class="form-control w-100"  name = "price" id="carsinput" placeholder="Submit car price">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2 w-25">Add Car</button>
+      </form>
+
+    {% for c in cars %}
+        <div class="card mb-2">
+            <div class="card-body">
+                <p>{{ c.make }}</p>
+                <p>{{ c.model }}</p>
+                <p>{{ c.year }}</p>
+                <p>{{ c.color }}</p>
+                <p>${{ c.price }}</p>
+                <p>{{ c.date_created.strftime("%B %d, %Y %I:%M %p")}}</p>
+                
+        </div>
+    </div>
+    {% endfor %}
+</div>
 {% endblock content %}
